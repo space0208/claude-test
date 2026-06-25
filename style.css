@@ -24,7 +24,8 @@ html, body {
   font-family: 'Inter', system-ui, sans-serif;
   background: var(--navy);
   color: var(--white);
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 /* ===== PROGRESS BAR ===== */
@@ -56,6 +57,7 @@ html, body {
   border-radius: 99px;
   width: 0%;
   transition: width 0.5s cubic-bezier(.4,0,.2,1);
+  box-shadow:0 0 18px #F5C542;
 }
 .progress-label {
   font-size: 12px;
@@ -70,8 +72,8 @@ html, body {
 .screens {
   position: relative;
   width: 100%;
-  height: 100vh;
-  overflow: hidden;
+  min-height:100vh;
+  overflow:hidden;
 }
 
 .screen {
@@ -82,6 +84,8 @@ html, body {
   justify-content: center;
   padding: 80px 24px 40px;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior:smooth;
   opacity: 0;
   transform: translateX(60px);
   pointer-events: none;
@@ -91,10 +95,12 @@ html, body {
   opacity: 1;
   transform: translateX(0);
   pointer-events: all;
+  z-index:10;
 }
 .screen.exit {
   opacity: 0;
   transform: translateX(-60px);
+  z-index:1;
 }
 
 .screen-inner {
@@ -156,10 +162,10 @@ html, body {
   transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
   box-shadow: 0 6px 24px rgba(245,197,66,0.35);
 }
-.btn-primary:hover {
-  background: #ffd155;
-  transform: translateY(-2px);
-  box-shadow: 0 10px 32px rgba(245,197,66,0.45);
+.btn-primary:hover{
+    background:#ffd155;
+    transform:translateY(-2px) scale(1.03);
+    box-shadow:0 10px 32px rgba(245,197,66,.45);
 }
 .btn-primary:active { transform: translateY(0); }
 
@@ -240,6 +246,7 @@ html, body {
   background: rgba(245,197,66,0.1);
   border-color: rgba(245,197,66,0.4);
   transform: translateY(-2px);
+  box-shadow:0 10px 25px rgba(245,197,66,.18);
 }
 .choice-card.selected {
   background: rgba(245,197,66,0.18);
@@ -292,6 +299,7 @@ html, body {
   background: rgba(245,197,66,0.09);
   border-color: rgba(245,197,66,0.35);
   transform: translateX(4px);
+  box-shadow:0 10px 25px rgba(245,197,66,.18);
 }
 .choice-card-wide.selected {
   background: rgba(245,197,66,0.14);
@@ -355,7 +363,9 @@ html, body {
 }
 
 /* ===== RESULT SCREEN ===== */
-.result-layout { padding: 10px 0 80px; }
+.result-layout{
+    padding:20px 0 120px;
+}
 
 .result-header {
   margin-bottom: 28px;
@@ -477,6 +487,13 @@ html, body {
   display: flex;
   align-items: center;
   gap: 14px;
+  transition:.25s;
+  cursor:pointer;
+}
+.uni-card:hover{
+    transform: translateY(-4px);
+    border-color: rgba(245,197,66,.4);
+    box-shadow: 0 10px 25px rgba(245,197,66,.18);
 }
 .uni-rank {
   font-size: 18px;
