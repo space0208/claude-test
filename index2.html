@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UniPath — USA ga yo'l</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- PROGRESS BAR -->
+<div class="progress-bar-wrap" id="progressWrap">
+  <div class="progress-bar-track">
+    <div class="progress-bar-fill" id="progressFill"></div>
+  </div>
+  <span class="progress-label" id="progressLabel">1 / 6</span>
+</div>
+
+<!-- SCREENS -->
+<main class="screens" id="screens">
+
+  <!-- SCREEN 0: Welcome -->
+  <section class="screen active" id="screen-0">
+    <div class="screen-inner center-layout">
+      <div class="brand-badge">🎓 UniPath</div>
+      <h1 class="hero-title">USA universitetiga<br><span class="gold">yo'lingni top.</span></h1>
+      <p class="hero-sub">O'zbekiston o'quvchilari uchun — sinf, profil va orzuingga qarab eng mos universitetlarni tavsiya qilamiz.</p>
+      <button class="btn-primary" onclick="goTo(1)">Boshlash →</button>
+      <p class="lang-note">Savollarga o'zbek yoki ingliz tilida javob bering</p>
+    </div>
+    <div class="bg-orb orb1"></div>
+    <div class="bg-orb orb2"></div>
+  </section>
+
+  <!-- SCREEN 1: Grade -->
+  <section class="screen" id="screen-1">
+    <div class="screen-inner">
+      <p class="step-eye">Qadam 1 — Hozirgi holat</p>
+      <h2 class="question">Qaysi sinfdasiz?</h2>
+      <div class="cards-grid" id="grade-grid">
+        <button class="choice-card" data-key="grade" data-val="8" onclick="pick(this,1,2)">
+          <span class="card-num">8</span>
+          <span class="card-label">8-sinf</span>
+        </button>
+        <button class="choice-card" data-key="grade" data-val="9" onclick="pick(this,1,2)">
+          <span class="card-num">9</span>
+          <span class="card-label">9-sinf</span>
+        </button>
+        <button class="choice-card" data-key="grade" data-val="10" onclick="pick(this,1,2)">
+          <span class="card-num">10</span>
+          <span class="card-label">10-sinf</span>
+        </button>
+        <button class="choice-card" data-key="grade" data-val="11" onclick="pick(this,1,2)">
+          <span class="card-num">11</span>
+          <span class="card-label">11-sinf</span>
+        </button>
+        <button class="choice-card wide" data-key="grade" data-val="gap" onclick="pick(this,1,2)">
+          <span class="card-num">🕐</span>
+          <span class="card-label">Gap Year</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 2: Goal -->
+  <section class="screen" id="screen-2">
+    <div class="screen-inner">
+      <p class="step-eye">Qadam 2 — Maqsad</p>
+      <h2 class="question">Nima istaysiz?</h2>
+      <div class="cards-col">
+        <button class="choice-card-wide" data-key="goal" data-val="full" onclick="pick(this,2,3)">
+          <span class="card-icon">💰</span>
+          <div>
+            <strong>Full Ride</strong>
+            <p>To'liq grant — o'qish, yashash, hammasi</p>
+          </div>
+        </button>
+        <button class="choice-card-wide" data-key="goal" data-val="partial" onclick="pick(this,2,3)">
+          <span class="card-icon">🎓</span>
+          <div>
+            <strong>Partial Scholarship</strong>
+            <p>Qisman grant, qolgani oila tomonidan</p>
+          </div>
+        </button>
+        <button class="choice-card-wide" data-key="goal" data-val="admission" onclick="pick(this,2,3)">
+          <span class="card-icon">✈️</span>
+          <div>
+            <strong>Just Admission</strong>
+            <p>Qabul bo'lish muhim, moliya keyinroq</p>
+          </div>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 3: English Level -->
+  <section class="screen" id="screen-3">
+    <div class="screen-inner">
+      <p class="step-eye">Qadam 3 — Ingliz tili</p>
+      <h2 class="question">Ingliz tilingiz qanday?</h2>
+      <div class="cards-col">
+        <button class="choice-card-wide" data-key="english" data-val="none" onclick="pick(this,3,4)">
+          <span class="card-icon">📚</span>
+          <div><strong>Boshlang'ich</strong><p>Maktabda o'qiyman, amaliyot yo'q</p></div>
+        </button>
+        <button class="choice-card-wide" data-key="english" data-val="intermediate" onclick="pick(this,3,4)">
+          <span class="card-icon">💬</span>
+          <div><strong>O'rta daraja</strong><p>Gaplasha olaman, IELTS 5.5–6.5</p></div>
+        </button>
+        <button class="choice-card-wide" data-key="english" data-val="advanced" onclick="pick(this,3,4)">
+          <span class="card-icon">⚡</span>
+          <div><strong>Yuqori daraja</strong><p>IELTS 7+, erkin muloqot</p></div>
+        </button>
+        <button class="choice-card-wide" data-key="english" data-val="ielts_no" onclick="pick(this,3,4)">
+          <span class="card-icon">📝</span>
+          <div><strong>IELTS yo'q hali</strong><p>Test topshirmaganman</p></div>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 4: SAT -->
+  <section class="screen" id="screen-4">
+    <div class="screen-inner">
+      <p class="step-eye">Qadam 4 — SAT</p>
+      <h2 class="question">SAT natijangiz bormi?</h2>
+      <div class="cards-grid two-col">
+        <button class="choice-card" data-key="sat" data-val="none" onclick="pick(this,4,5)">
+          <span class="card-num">—</span>
+          <span class="card-label">Yo'q hali</span>
+        </button>
+        <button class="choice-card" data-key="sat" data-val="1200" onclick="pick(this,4,5)">
+          <span class="card-num">1200+</span>
+          <span class="card-label">O'rtacha</span>
+        </button>
+        <button class="choice-card" data-key="sat" data-val="1400" onclick="pick(this,4,5)">
+          <span class="card-num">1400+</span>
+          <span class="card-label">Yaxshi</span>
+        </button>
+        <button class="choice-card" data-key="sat" data-val="1500" onclick="pick(this,4,5)">
+          <span class="card-num">1500+</span>
+          <span class="card-label">A'lo</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 5: Activities -->
+  <section class="screen" id="screen-5">
+    <div class="screen-inner">
+      <p class="step-eye">Qadam 5 — Faoliyat</p>
+      <h2 class="question">Extracurricular faoliyatlaringiz?</h2>
+      <p class="q-hint">Olimpiadalar, sport, klub, loyiha, ish — barchasi hisobga olinadi</p>
+      <div class="cards-col">
+        <button class="choice-card-wide" data-key="activities" data-val="none" onclick="pick(this,5,6)">
+          <span class="card-icon">🤷</span>
+          <div><strong>Hozircha yo'q</strong><p>Hali faol bo'lmadim</p></div>
+        </button>
+        <button class="choice-card-wide" data-key="activities" data-val="few" onclick="pick(this,5,6)">
+          <span class="card-icon">🌱</span>
+          <div><strong>Bir nechta</strong><p>1–2 ta klub yoki sport</p></div>
+        </button>
+        <button class="choice-card-wide" data-key="activities" data-val="many" onclick="pick(this,5,6)">
+          <span class="card-icon">🏆</span>
+          <div><strong>Ko'p va kuchli</strong><p>Olimpiada, liderlik, xalqaro tajriba</p></div>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 6: Dream Level -->
+  <section class="screen" id="screen-6">
+    <div class="screen-inner">
+      <p class="step-eye">Qadam 6 — Orzu</p>
+      <h2 class="question">Qaysi darajadagi universitetni maqsad qilasiz?</h2>
+      <div class="cards-col">
+        <button class="choice-card-wide level-good" data-key="dream" data-val="good" onclick="pick(this,6,'result')">
+          <span class="card-icon">🟢</span>
+          <div><strong>Good Universities</strong><p>Ajoyib ta'lim, kengroq qabul imkoniyati</p></div>
+        </button>
+        <button class="choice-card-wide level-comp" data-key="dream" data-val="competitive" onclick="pick(this,6,'result')">
+          <span class="card-icon">🟡</span>
+          <div><strong>Competitive Universities</strong><p>Yuqori reytingli, tanlama qattiq</p></div>
+        </button>
+        <button class="choice-card-wide level-elite" data-key="dream" data-val="elite" onclick="pick(this,6,'result')">
+          <span class="card-icon">🔴</span>
+          <div><strong>Elite Universities</strong><p>Harvard, MIT, Yale — eng yuqori cho'qqi</p></div>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN RESULT -->
+  <section class="screen" id="screen-result">
+    <div class="screen-inner result-layout">
+      <div id="result-content"><!-- JS renders here --></div>
+    </div>
+  </section>
+
+</main>
+
+<!-- BACK BUTTON -->
+<button class="btn-back" id="backBtn" onclick="goBack()" style="display:none">← Orqaga</button>
+
+<script src="app.js"></script>
+</body>
+</html>
