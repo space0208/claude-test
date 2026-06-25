@@ -48,22 +48,31 @@ function goTo(nextId) {
 
   if (!target) return;
 
-  current.classList.add('exit');
-  setTimeout(() => {
+current.classList.add('exit');
+
+setTimeout(() => {
+
     current.classList.remove('active', 'exit');
-  }, 450);
 
-  target.classList.add('active');
-  target.scrollTop = 0;
+    target.classList.add('active');
+    target.scrollTop = 0;
 
-  if (nextId === 'result') {
-    currentScreen = 'result';
-    renderResult();
-  } else {
-    currentScreen = nextId;
-  }
+    if (nextId === 'result') {
+        currentScreen = 'result';
+        renderResult();
+    } else {
+        currentScreen = nextId;
+    }
 
-  updateProgress();
+    updateProgress();
+
+    document.getElementById('backBtn').style.display =
+        (nextId === 1 || nextId === 0) ? 'none' : 'flex';
+
+}, 200);
+
+return;
+
 
   // Show/hide back button
   document.getElementById('backBtn').style.display =
@@ -71,21 +80,26 @@ function goTo(nextId) {
 }
 
 function goBack() {
-  if (currentScreen === 'result') {
-    goTo(6);
-    return;
-  }
 
-  if (currentScreen <= 1) return;
+    if (currentScreen === 'result') {
+        document.getElementById("screen-result").classList.remove("active");
+        document.getElementById("screen-6").classList.add("active");
 
-  const prev = currentScreen - 1;
-  const current = document.getElementById(`screen-${currentScreen}`);
-  const target = document.getElementById(`screen-${prev}`);
+        currentScreen = 6;
+        updateProgress();
+        return;
+    }
+
+    if (currentScreen <= 1) return;
+
+    const prev = currentScreen - 1;
+    const current = document.getElementById(`screen-${currentScreen}`);
+    const target = document.getElementById(`screen-${prev}`);
   
   current.style.transform = 'translateX(60px)';
   current.style.opacity = '0';
   setTimeout(() => {
-    current.classList.remove('active');
+    current.classList.remove('active', 'exit');
     current.style.transform = '';
     current.style.opacity = '';
   }, 300);
