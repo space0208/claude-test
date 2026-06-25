@@ -54,6 +54,7 @@ function goTo(nextId) {
   }, 450);
 
   target.classList.add('active');
+  target.scrollTop = 0;
 
   if (nextId === 'result') {
     currentScreen = 'result';
@@ -70,12 +71,17 @@ function goTo(nextId) {
 }
 
 function goBack() {
-  if (currentScreen === 'result') { goToScreen(6); return; }
+  if (currentScreen === 'result') {
+    goTo(6);
+    return;
+  }
+
   if (currentScreen <= 1) return;
+
   const prev = currentScreen - 1;
   const current = document.getElementById(`screen-${currentScreen}`);
   const target = document.getElementById(`screen-${prev}`);
-
+  
   current.style.transform = 'translateX(60px)';
   current.style.opacity = '0';
   setTimeout(() => {
@@ -216,7 +222,7 @@ function renderResult() {
   const advice = getAdvice();
 
   // Pick universities: show dream level + one tier below
-  const dreamUnis = universities[dreamLevel].slice(0, 3);
+  const dreamUnis = (universities[dreamLevel] || []).slice(0, 3);
   const safeLevel = dreamLevel === 'elite' ? 'competitive' : dreamLevel === 'competitive' ? 'good' : 'good';
   const safeUnis = universities[safeLevel].slice(0, 3);
 
@@ -306,6 +312,7 @@ function restart() {
   });
 
   currentScreen = 0;
+  document.getElementById("result-content").innerHTML = "";
   document.getElementById('screen-0').classList.add('active');
   document.getElementById('progressWrap').classList.remove('visible');
   document.getElementById('backBtn').style.display = 'none';
